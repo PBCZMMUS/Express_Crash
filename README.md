@@ -72,3 +72,14 @@
     -   Update code for PORT in the server.js
     -   Update Script
         -   "dev": "node --watch --env-file=.env server"
+
+## Step 3.1 (Lesson Continued)
+    -   Get All Posts       //localhost:3000/api/posts
+    -   Get limit query     //localhost:3000/api/posts?limit=2
+    -   Get Single Post     //localhost:3000/api/posts/:id
+
+    -   Note:
+        -   res.json();
+        -   res.status(200).json(); //updated with 200
+        -   res.status(404).json(); //updated with 404
+        -   drop else {}, but add return to if(){... return ...}

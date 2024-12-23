@@ -2,36 +2,33 @@
 
 ## Step 1 (Setting Up Server)
 
-###  Installation:
-    -   git init
-    -   npm init -y
-    -   npm i express --save-dev
+    -   Installation:
+        -   git init
+        -   npm init -y
+        -   npm i express --save-dev
 
-###  Create .gitignore
-    -   node_modules
-    -   .env
+    -  Create .gitignore
+        -   node_modules
+        -   .env
 
-###  Create server.js
-    -   Import the Express library, which is a lightweight framework for building web servers in Node.js
+    -  Create server.js
+        -   Import the Express library, which is a lightweight framework for building web servers in Node.js
+        -   Create an instance of the Express application, which represents your web server
+        -   Define the port number on which the server will listen for incoming requests
+        -   Start the server and make it listen on the specified port.
+        -   Once the server starts, log a message indicating it is running and on which port.
 
-    -   Create an instance of the Express application, which represents your web server
+    -   Run the app
+        -   node server.js OR node server OR npm start
+        -   to stop server, use Ctrl + C
 
-    -   Define the port number on which the server will listen for incoming requests
+    -   git push
+        - GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_pbczmm" git push origin main
 
-    -   Start the server and make it listen on the specified port.
-    -   Once the server starts, log a message indicating it is running and on which port.
+    -   Note:
+        -   In the package.json, the entry name was changed into server.js
 
-###  Run the app
-    -   node server.js OR node server OR npm start
-    -   to stop server, use Ctrl + C
-
-###  git push
-    - GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_pbczmm" git push origin main
-
-#### Note:
-    -   In the package.json, the entry name was changed into server.js
-
-## Step 1.1 (Lesson Continued)
+### Step 1.1 (Lesson Continued)
     -   Setting Up Server Auto Reload
         -   (node module build-in)
         "scripts": {
@@ -67,7 +64,7 @@
         -   Type 'localhost:3000/api/posts'
         -   Click 'Send'
 
-## Step 3.1 (Lesson Continued)
+### Step 3.1 (Lesson Continued)
     -   Get All Posts       //localhost:3000/api/posts
     -   Get limit query     //localhost:3000/api/posts?limit=2
     -   Get Single Post     //localhost:3000/api/posts/:id
@@ -91,7 +88,18 @@
         -   remove /api/posts from posts.js being after added in the server
         -   add export the router at the end
 
-## Step 5.1 (Lesson Continued 'ES module')
+### Step 5.1 (Lesson Continued 'ES module')
         -   add "type": "module" to package.json
         -   use import ... from ... in server.js and posts.js
         -   __dirname is not defined in ES module scope
+
+## Step 6 (Update posts with CRUD)
+    -   Add body parser middleware to the server
+    -   Add new post into posts.js
+    -   Try to add a new post with postman at localhost:3579/api/posts
+        -   choose body and choose form-urlencoded
+        -   add key (title) and value (Hello), and then click send
+    -   Try to update at localhost:3579/api/posts/4
+        -   change the value of the title
+    -   Try to delete a post at localhost:3579/api/posts/4
+        -   choose Delete and click send

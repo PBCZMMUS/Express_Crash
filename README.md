@@ -50,3 +50,7 @@
 
         -   using get & sendFile from the location 'public' //(path & path.join())
         -   try it in browser localhost:3000/home   OR localhost:3000/about
+
+## Step 2 (Setting Up Middleware)
+    -   'express.static' middleware to serve static files like HTML, CSS, JavaScript, and images
+    -   can be accessed at 'http://localhost:3000 OR style.css OR script.js etc.

@@ -23,9 +23,30 @@
 
 ###  Run the app
     -   node server.js OR node server OR npm start
+    -   to stop server, use Ctrl + C
 
 ###  git push
     - GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_pbczmm" git push origin main
 
 #### Note:
     -   In the package.json, the entry name was changed into server.js
+
+## Step 1.1 (Lesson Continued)
+    -   Setting Up Server Auto Reload
+        -   (node module build-in)
+        "scripts": {
+            "start": "node server",
+            "dev": "node --watch server"
+        }
+        -   Run:    npm run dev
+
+        -   OR (3rd party module)
+        -   npm install -g nodemon
+        -   Run:    nodemon server
+
+    -   Testing routes
+        -   using get & send
+        -   try it in browser localhost:3000
+
+        -   using get & sendFile from the location 'public' //(path & path.join())
+        -   try it in browser localhost:3000/home   OR localhost:3000/about

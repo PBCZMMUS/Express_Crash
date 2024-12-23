@@ -56,3 +56,13 @@
     -   Add codes for static middleware to server.js
         -   'express.static' middleware to serve static files like HTML, CSS, JavaScript, and images
         -   can be accessed at 'http://localhost:3000 OR style.css OR script.js etc.
+
+## Step 3 (Setting Up Json Data)
+    -   First with hardcode for json 'posts'
+    -   Send it to client through res.json() OR res.send()
+        -   Access at 'http://localhost:3000/api/posts
+
+    -   Install 'postman' VS Code extension and access the json
+        -   Choose 'GET' method
+        -   Type 'localhost:3000/api/posts'
+        -   Click 'Send'

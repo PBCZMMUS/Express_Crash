@@ -5,22 +5,22 @@ const app = express();
 
 const PORT = 3000;
 
-// Use the 'express.static' middleware to serve static files like HTML, CSS, JavaScript, and images.
-// The 'path.join(__dirname, 'public')' sets the directory where static files are located.
-// Any file in the 'public' folder can be accessed directly via the URL without defining specific routes.
-// For example, if 'public' contains 'style.css', it can be accessed at 'http://localhost:<PORT>/style.css'.
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('/', (req, res) => {
-//     res.send("Hello World!");
-// });
+// Define an array of posts with unique IDs and titles
+let posts = [
+    { id: 1, title: "Post One" }, // Post with ID 1
+    { id: 2, title: "Post Two" }, // Post with ID 2
+    { id: 3, title: "Post Three" } // Post with ID 3
+];
 
-// app.get('/home', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// });
-
-// app.get('/about', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'about.html'));
-// });
+// Define a GET route at '/api/posts' to return all posts
+app.get('/api/posts', (req, res) => {
+    // Send the 'posts' array as a JSON response to the client
+    res.json(posts);
+    
+    // Alternatively, 'res.send(posts)' could also be used to send the data.
+    // res.send(posts); // Uncomment if you want to use 'send' instead of 'json'
+});
 
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT} . . .`));

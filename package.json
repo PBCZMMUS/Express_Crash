@@ -2,14 +2,15 @@
   "name": "express",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server",
     "dev": "node --watch --env-file=.env server"
   },
   "keywords": [],
-  "author": "",
+  "author": "PBCZMM",
   "license": "ISC",
-  "description": "",
+  "description": "This is all about Express, crash course!",
   "devDependencies": {
     "express": "^4.21.2"
   }

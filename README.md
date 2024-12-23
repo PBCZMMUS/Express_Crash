@@ -85,8 +85,13 @@
         -   "dev": "node --watch --env-file=.env server"
 
 ## Step 5 (Setting Up Router - Separation of concern)
-        -   Create routes folder and create posts.json
-            -   move all json hard-codes and respective fetch codes to posts.js
-            -   add and make some changes to the server
-            -   remove /api/posts from posts.js being after added in the server
-            -   add export the router at the end
+    -   Create routes folder and create posts.json
+        -   move all json hard-codes and respective fetch codes to posts.js
+        -   add and make some changes to the server
+        -   remove /api/posts from posts.js being after added in the server
+        -   add export the router at the end
+
+## Step 5.1 (Lesson Continued 'ES module')
+        -   add "type": "module" to package.json
+        -   use import ... from ... in server.js and posts.js
+        -   __dirname is not defined in ES module scope

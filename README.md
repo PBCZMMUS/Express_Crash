@@ -66,3 +66,9 @@
         -   Choose 'GET' method
         -   Type 'localhost:3000/api/posts'
         -   Click 'Send'
+
+## Step 4 (Setting Up .env 'Enviroment Variable')
+    -   Create .env file and add API keys OR Port
+    -   Update code for PORT in the server.js
+    -   Update Script
+        -   "dev": "node --watch --env-file=.env server"

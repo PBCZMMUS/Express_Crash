@@ -83,3 +83,10 @@
     -   Update code for PORT in the server.js
     -   Update Script
         -   "dev": "node --watch --env-file=.env server"
+
+## Step 5 (Setting Up Router - Separation of concern)
+        -   Create routes folder and create posts.json
+            -   move all json hard-codes and respective fetch codes to posts.js
+            -   add and make some changes to the server
+            -   remove /api/posts from posts.js being after added in the server
+            -   add export the router at the end

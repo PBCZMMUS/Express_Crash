@@ -67,12 +67,6 @@
         -   Type 'localhost:3000/api/posts'
         -   Click 'Send'
 
-## Step 4 (Setting Up .env 'Enviroment Variable')
-    -   Create .env file and add API keys OR Port
-    -   Update code for PORT in the server.js
-    -   Update Script
-        -   "dev": "node --watch --env-file=.env server"
-
 ## Step 3.1 (Lesson Continued)
     -   Get All Posts       //localhost:3000/api/posts
     -   Get limit query     //localhost:3000/api/posts?limit=2
@@ -83,3 +77,9 @@
         -   res.status(200).json(); //updated with 200
         -   res.status(404).json(); //updated with 404
         -   drop else {}, but add return to if(){... return ...}
+
+## Step 4 (Setting Up .env 'Enviroment Variable')
+    -   Create .env file and add API keys OR Port
+    -   Update code for PORT in the server.js
+    -   Update Script
+        -   "dev": "node --watch --env-file=.env server"

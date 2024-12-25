@@ -1,4 +1,4 @@
-# Express Course
+# Express Crash Course
 
 ## Step 1 (Setting Up Server)
 
@@ -103,3 +103,28 @@
         -   change the value of the title
     -   Try to delete a post at localhost:3579/api/posts/4
         -   choose Delete and click send
+
+## Step 7 (Setting Up Logger Middleware)
+    -   Create a folder middleware and create 'logger.js' file
+    -   Add logger middleware codes and export it
+    -   Add import in the server.js for logger
+
+    -   Note:
+        -   If the logger middleware is used in the routes, then 2nd 'logger' argument is used every route like
+        -   const logger = (req, res, next) => {
+            console.log(
+                `${req.method} ${req.protocol}://${req.get("host")}${req.originalUrl}`
+                );
+                next();
+            };
+
+            // Get all posts or limit by query parameter
+            router.get("/", logger, (req, res) => {
+                const limit = parseInt(req.query.limit);
+
+                if (!isNaN(limit) && limit > 0) {
+                    return res.status(200).json(posts.slice(0, limit));
+                }
+
+                res.status(200).json(posts);
+            });

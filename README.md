@@ -143,3 +143,18 @@
             -   it still gives html instead of error at localhost:3579/api/test, so needs to fix it
             -   for that, add some more codes into server.js and to make clean we can create 'notFound.js' file in the middleware
             -   add import to server.js
+
+## Step 9 (Setting Up Controllers)
+    -   Create 'Controllers' folder and create 'postController.js' file
+    -   Cut the hardcodes and such followings
+    -   Past them into the controller and add export at the beginning of each (OR you can add at the end as well)
+        -   (req, res, next) => {
+                const limit = parseInt(req.query.limit);
+
+                if (!isNaN(limit) && limit > 0) {
+                    return res.status(200).json(posts.slice(0, limit));
+                }
+
+                res.status(200).json(posts);
+            }
+    -   Add import all of them to the routes (make sure the folder up-level)

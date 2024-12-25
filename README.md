@@ -107,10 +107,10 @@
 ## Step 7 (Setting Up Logger Middleware)
     -   Create a folder middleware and create 'logger.js' file
     -   Add logger middleware codes and export it
-    -   Add import in the server.js for logger
+    -   Add import in the server.js for logger 
 
-    -   Note:
-        -   If the logger middleware is used in the routes, then 2nd 'logger' argument is used every route like
+    -   Note: (to avoid such these messy codes, we import this into the server.js as above)
+        -   If the logger middleware is used in the routes, then 2nd 'logger' argument is to be used in every route like
         -   const logger = (req, res, next) => {
             console.log(
                 `${req.method} ${req.protocol}://${req.get("host")}${req.originalUrl}`
@@ -128,3 +128,13 @@
 
                 res.status(200).json(posts);
             });
+
+## Step 8 (Setting Up Custom Error Handling)
+    -   Test it out at localhost:3000/api/test, the test does not exist, but error does not show up
+    -   Set up error handlings
+        -   Change error handling codes into the routes
+        -   Create error.js in the middleware and export it
+        -   Change some codes for error handling and add next argument for each
+            -   it still gives html instead of error at localhost:3579/api/test, so needs to fix it
+            -   for that, add some more codes into server.js and to make clean we can create 'notFound.js' file in the middleware
+            -   add import to server.js

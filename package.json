@@ -13,5 +13,8 @@
   "description": "This is all about Express, crash course!",
   "devDependencies": {
     "express": "^4.21.2"
+  },
+  "dependencies": {
+    "colors": "^1.4.0"
   }
 }

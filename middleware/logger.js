@@ -1,16 +1,27 @@
+import colors from 'colors';
+
 // Define a middleware function named `logger`
 const logger = (req, res, next) => {
-    // Log the HTTP method (e.g., GET, POST), protocol (e.g., http), host (e.g., localhost:3000),
-    // and the original URL of the incoming request
-    console.log(
-      `${req.method} ${req.protocol}://${req.get("host")}${req.originalUrl}`
-    );
-  
-    // Call `next()` to pass control to the next middleware in the stack
-    // Without this, the request would hang and not proceed
-    next();
+  // Map HTTP methods to corresponding colors
+  const methodColors = {
+    GET: 'green',
+    POST: 'blue',
+    PUT: 'yellow',
+    DELETE: 'red'
   };
 
-  // Exporting the logger middleware so it can be reused in other parts of the application or tests.
-// This allows modularity and avoids duplicating the logger logic in multiple files.
+  // Determine the color for the current request method
+  const color = methodColors[req.method] || 'white';
+
+  // Log the request method, protocol, host, and URL, applying the appropriate color
+  console.log(
+    colors[color](
+      `${req.method} ${req.protocol}://${req.get("host")}${req.originalUrl}`
+    )
+  );
+
+  // Call next() to pass control to the next middleware in the stack
+  next();
+};
+
 export default logger;

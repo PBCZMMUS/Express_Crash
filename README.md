@@ -129,6 +129,11 @@
                 res.status(200).json(posts);
             });
 
+### Step 7.1 (Lesson Continued)
+    -   Adding colors (stop the server and run the installer OR open a new terminal/bash and install it)
+        -   install npm i colors
+        -   import color in the logger file
+
 ## Step 8 (Setting Up Custom Error Handling)
     -   Test it out at localhost:3000/api/test, the test does not exist, but error does not show up
     -   Set up error handlings

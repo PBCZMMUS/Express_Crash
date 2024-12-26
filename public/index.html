@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Manager</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>This is Home Page!</h1>
+  <div class="container">
+    <h1>Post Manager</h1>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button id="get-all-posts-btn">Show All Posts</button>
+      <form id="get-single-post-form">
+        <input type="number" name="post-id" placeholder="Enter Post ID" required />
+        <button type="submit">Get Single Post</button>
+      </form>
+    </div>
+
+    <!-- Add Post -->
+    <form id="add-post-form">
+      <input type="text" name="title" placeholder="Add a New Post Title" required />
+      <button type="submit">Add Post</button>
+    </form>
+
+    <!-- Update Post -->
+    <form id="update-post-form">
+      <input type="number" name="post-id" placeholder="Enter Post ID to Update" required />
+      <input type="text" name="new-title" placeholder="Enter New Title" required />
+      <button type="submit">Update Post</button>
+    </form>
+
+    <!-- Delete Post -->
+    <form id="delete-post-form">
+      <input type="number" name="post-id" placeholder="Enter Post ID to Delete" required />
+      <button type="submit">Delete Post</button>
+    </form>
+
+    <!-- Output Section -->
+    <div id="output" class="posts-container"></div>
+  </div>
+  <script src="./js/main.js"></script>
 </body>
 </html>

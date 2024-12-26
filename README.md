@@ -158,3 +158,12 @@
                 res.status(200).json(posts);
             }
     -   Add import all of them to the routes (make sure the folder up-level)
+
+## Step 10 (Let Running the Static Files from Public)
+    -   Uncomment the commented middleware for 'public'
+    -   Add import 'url' module to server.js
+    -   Converts the URL into an absolute file system path
+    -   Use path.dirname to get directory
+
+    -   Update index.html and add main.js and style.css there
+        -   Try it at localhost:3579/ and click it the button and test it out by adding updating deleting

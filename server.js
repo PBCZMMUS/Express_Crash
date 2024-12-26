@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import path from 'path';
 // Importing the `fileURLToPath` method from the 'url' module.
 // This method converts a file URL to a file path string.
@@ -7,6 +8,7 @@ import posts from './routes/posts.js';
 import logger from './middleware/logger.js';
 import errorHandler from './middleware/error.js';
 import notFound from './middleware/notFound.js';
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -29,6 +31,8 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+app.use(cors());
+
 app.use(express.json()); 
 
 app.use(express.urlencoded({ extended: true })); 
@@ -43,5 +47,7 @@ app.use('/api/posts', posts);
 app.use(notFound);
 
 app.use(errorHandler);
+
+
 
 app.listen(PORT, '0.0.0.0', () => console.log(`Server is running on PORT ${PORT} . . .`));

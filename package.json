@@ -1,21 +1,20 @@
 {
   "name": "express",
   "version": "1.0.0",
+  "description": "## Step 1 (Setting Up Server)",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch --env-file=.env server"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
-  "author": "PBCZMM",
+  "author": "",
   "license": "ISC",
-  "description": "This is all about Express, crash course!",
-  "devDependencies": {
-    "express": "^4.21.2"
-  },
   "dependencies": {
-    "colors": "^1.4.0",
-    "cors": "^2.8.5"
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
   }
 }

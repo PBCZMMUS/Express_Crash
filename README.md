@@ -1,169 +1,144 @@
-# Express Crash Course
+# User Manual for the CRUD App
 
-## Step 1 (Setting Up Server)
+## Overview
 
-    -   Installation:
-        -   git init
-        -   npm init -y
-        -   npm i express --save-dev
+    This application allows users to perform basic CRUD (Create, Read, Update, Delete) operations on posts. The app includes functionalities to:
+        •	Add a new post.
+        •	View all posts.
+        •	Edit an existing post.
+        •	Delete a post.
+        •	Sort the list of posts alphabetically.
 
-    -  Create .gitignore
-        -   node_modules
-        -   .env
+    It consists of a front-end (HTML, CSS, JS) for user interaction and a back-end built with Express.js for data management.
 
-    -  Create server.js
-        -   Import the Express library, which is a lightweight framework for building web servers in Node.js
-        -   Create an instance of the Express application, which represents your web server
-        -   Define the port number on which the server will listen for incoming requests
-        -   Start the server and make it listen on the specified port.
-        -   Once the server starts, log a message indicating it is running and on which port.
+## Prerequisites
 
-    -   Run the app
-        -   node server.js OR node server OR npm start
-        -   to stop server, use Ctrl + C
+    Before using this app, ensure you have the following installed:
+        •	Node.js: A JavaScript runtime for building server-side applications. Install Node.js
+        •	Text Editor: A code editor like VSCode, Sublime, or Atom to edit the source code if needed.
+        •	A Web Browser: Google Chrome, Firefox, or any other modern browser for accessing the app.
 
-    -   git push
-        - GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_pbczmm" git push origin main
+## Features
 
-    -   Note:
-        -   In the package.json, the entry name was changed into server.js
+    1. Home Page
 
-### Step 1.1 (Lesson Continued)
-    -   Setting Up Server Auto Reload
-        -   (node module build-in)
-        "scripts": {
-            "start": "node server",
-            "dev": "node --watch server"
-        }
-        -   Run:    npm run dev
+    When you first visit the app, you’ll land on the Home page, where you can:
+        •	View the list of all posts.
+        •	Add a new post.
+        •	Edit an existing post.
+        •	Delete a post.
+        •	Sort the list of posts alphabetically.
 
-        -   OR (3rd party module)
-        -   npm install -g nodemon
-        -   Run:    nodemon server
+    2. Add Post
 
-    -   Testing routes
-        -   using get & send
-        -   try it in browser localhost:3000
+    To add a post:
+        1.	Enter a title in the input field.
+        2.	Click the Add Post button.
 
-        -   using get & sendFile from the location 'public' //(path & path.join())
-        -   try it in browser localhost:3000/home   OR localhost:3000/about
+    Your post will be added to the list below, and you’ll receive a confirmation message that the post was successfully added.
 
-## Step 2 (Setting Up Middleware)
-    -   Create 'public' folder and add some files
-    -   Add codes for static middleware to server.js
-        -   'express.static' middleware to serve static files like HTML, CSS, JavaScript, and images
-        -   can be accessed at 'http://localhost:3000 OR style.css OR script.js etc.
+    3. Edit Post
 
-## Step 3 (Setting Up Json Data)
-    -   First with hardcode for json 'posts'
-    -   Send it to client through res.json() OR res.send()
-        -   Access at 'http://localhost:3000/api/posts
+    To edit an existing post:
+        1.	Click the Update button next to the post you want to edit.
+        2.	A prompt will appear asking you to enter a new title for the post.
+        3.	Enter the new title and click OK.
+        4.	The post will be updated on the list.
 
-    -   Install 'postman' VS Code extension and access the json
-        -   Choose 'GET' method
-        -   Type 'localhost:3000/api/posts'
-        -   Click 'Send'
+    4. Delete Post
 
-### Step 3.1 (Lesson Continued)
-    -   Get All Posts       //localhost:3000/api/posts
-    -   Get limit query     //localhost:3000/api/posts?limit=2
-    -   Get Single Post     //localhost:3000/api/posts/:id
+    To delete a post:
+        1.	Click the Delete button next to the post you want to remove.
+        2.	The post will be removed from the list immediately.
 
-    -   Note:
-        -   res.json();
-        -   res.status(200).json(); //updated with 200
-        -   res.status(404).json(); //updated with 404
-        -   drop else {}, but add return to if(){... return ...}
+    5. Sort Posts
 
-## Step 4 (Setting Up .env 'Enviroment Variable')
-    -   Create .env file and add API keys OR Port
-    -   Update code for PORT in the server.js
-    -   Update Script
-        -   "dev": "node --watch --env-file=.env server"
+    To sort posts alphabetically:
+        1.	Click the Sort Posts button located at the top of the post list.
+        2.	The posts will be sorted alphabetically by their title.
 
-## Step 5 (Setting Up Router - Separation of concern)
-    -   Create routes folder and create posts.json
-        -   move all json hard-codes and respective fetch codes to posts.js
-        -   add and make some changes to the server
-        -   remove /api/posts from posts.js being after added in the server
-        -   add export the router at the end
+## How to Run the App
 
-### Step 5.1 (Lesson Continued 'ES module')
-        -   add "type": "module" to package.json
-        -   use import ... from ... in server.js and posts.js
-        -   __dirname is not defined in ES module scope
+    1. Clone or Download the Repository
 
-## Step 6 (Update posts with CRUD)
-    -   Add body parser middleware to the server
-    -   Add new post into posts.js
-    -   Try to add a new post with postman at localhost:3579/api/posts
-        -   choose body and choose form-urlencoded
-        -   add key (title) and value (Hello), and then click send
-    -   Try to update at localhost:3579/api/posts/4
-        -   change the value of the title
-    -   Try to delete a post at localhost:3579/api/posts/4
-        -   choose Delete and click send
+    Clone or download the app’s repository to your local machine:
+    git clone <repository_url>
 
-## Step 7 (Setting Up Logger Middleware)
-    -   Create a folder middleware and create 'logger.js' file
-    -   Add logger middleware codes and export it
-    -   Add import in the server.js for logger 
+    2. Install Dependencies
 
-    -   Note: (to avoid such these messy codes, we import this into the server.js as above)
-        -   If the logger middleware is used in the routes, then 2nd 'logger' argument is to be used in every route like
-        -   const logger = (req, res, next) => {
-            console.log(
-                `${req.method} ${req.protocol}://${req.get("host")}${req.originalUrl}`
-                );
-                next();
-            };
+    Open a terminal in the app’s root directory and install the dependencies using npm:
+    npm install
 
-            // Get all posts or limit by query parameter
-            router.get("/", logger, (req, res) => {
-                const limit = parseInt(req.query.limit);
+    3. Set Up Environment Variables
 
-                if (!isNaN(limit) && limit > 0) {
-                    return res.status(200).json(posts.slice(0, limit));
-                }
+    Create a .env file in the root directory of the app. Add any required environment variables (if any). Here’s an example:
+    PORT=3000
 
-                res.status(200).json(posts);
-            });
+    4. Start the Server
 
-### Step 7.1 (Lesson Continued)
-    -   Adding colors (stop the server and run the installer OR open a new terminal/bash and install it)
-        -   install npm i colors
-        -   import color in the logger file
+    Once the dependencies are installed, you can start the server by running:
+    npm start
 
-## Step 8 (Setting Up Custom Error Handling)
-    -   Test it out at localhost:3000/api/test, the test does not exist, but error does not show up
-    -   Set up error handlings
-        -   Change error handling codes into the routes
-        -   Create error.js in the middleware and export it
-        -   Change some codes for error handling and add next argument for each
-            -   it still gives html instead of error at localhost:3579/api/test, so needs to fix it
-            -   for that, add some more codes into server.js and to make clean we can create 'notFound.js' file in the middleware
-            -   add import to server.js
+    The server will start on the port specified in the .env file (default is 3000), and you can access the app by navigating to http://localhost:3000 in your web browser.
 
-## Step 9 (Setting Up Controllers)
-    -   Create 'Controllers' folder and create 'postController.js' file
-    -   Cut the hardcodes and such followings
-    -   Past them into the controller and add export at the beginning of each (OR you can add at the end as well)
-        -   (req, res, next) => {
-                const limit = parseInt(req.query.limit);
+    Directory Structure
+    •	public/: Contains the static files, such as HTML, CSS, and JavaScript, used for the frontend.
+    •	index.html: The home page of the application.
+    •	about.html: The about page.
+    •	contact.html: The contact page.
+    •	styles.css: The CSS file to style the app’s pages.
+    •	script.js: Contains the JavaScript code for handling CRUD operations and frontend logic.
+    •	routes/: Contains route handlers for various API endpoints.
+    •	posts.js: Manages routes for fetching, adding, updating, and deleting posts.
+    •	middleware/: Contains middleware used in the app.
+    •	logger.js: Logs incoming requests to the server.
+    •	errorHandler.js: Handles errors globally in the app.
+    •	server.js: The main Express server file that initializes the server and connects the routes, middleware, and static files.
+    •	.env: Contains environment variables (e.g., port).
 
-                if (!isNaN(limit) && limit > 0) {
-                    return res.status(200).json(posts.slice(0, limit));
-                }
+    Technical Instructions
 
-                res.status(200).json(posts);
-            }
-    -   Add import all of them to the routes (make sure the folder up-level)
+Frontend
 
-## Step 10 (Let Running the Static Files from Public)
-    -   Uncomment the commented middleware for 'public'
-    -   Add import 'url' module to server.js
-    -   Converts the URL into an absolute file system path
-    -   Use path.dirname to get directory
+The frontend is built with HTML, CSS, and JavaScript:
+• HTML: The structure of the pages (index.html, about.html, contact.html).
+• CSS: Styles the pages, buttons, and layout.
+• JavaScript: Handles CRUD operations, manages DOM manipulation, and interacts with the backend API.
 
-    -   Update index.html and add main.js and style.css there
-        -   Try it at localhost:3579/ and click it the button and test it out by adding updating deleting
+Key JavaScript Functions
+• Add Post: Submits a POST request to the /api/posts endpoint to add a new post.
+• Fetch Posts: Fetches all posts from the server and updates the post list on the page.
+• Edit Post: Sends a PUT request to update the post title.
+• Delete Post: Sends a DELETE request to remove a post.
+• Sort Posts: Sorts the list of posts alphabetically.
+
+Backend
+
+The backend is built with Express.js:
+• API Routes: Routes for handling CRUD operations for posts.
+• POST /api/posts: Adds a new post.
+• GET /api/posts: Fetches all posts.
+• PUT /api/posts/:id: Updates a post by its ID.
+• DELETE /api/posts/:id: Deletes a post by its ID.
+
+Middleware
+
+The app uses two middleware functions: 1. Logger Middleware: Logs requests made to the server. 2. Error Handler Middleware: Catches errors thrown by any routes and sends a consistent error response.
+
+    Troubleshooting
+
+1. API Not Working
+   • Ensure the server is running correctly by checking the terminal for any errors.
+   • Make sure you have internet access if you’re using any external APIs.
+
+2. Posts Not Displaying
+   • Check if the fetchPosts function is being called correctly on page load.
+   • Open the browser’s developer tools (F12) and look for any JavaScript errors in the console.
+
+3. Server Not Starting
+   • Verify that all dependencies are installed correctly by running npm install in the root folder.
+   • Check the .env file for any missing or incorrect environment variables.
+
+   Conclusion
+
+This app provides a simple and effective way to manage posts with basic CRUD operations. It uses Express.js for the backend API and HTML/CSS/JS for the frontend. By following this manual, users should be able to run, interact with, and troubleshoot the application effectively.

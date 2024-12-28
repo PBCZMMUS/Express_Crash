@@ -1,84 +1,34 @@
-let posts = [
-    { id: 1, title: "Post One" },
-    { id: 2, title: "Post Two" },
-    { id: 3, title: "Post Three" },
-  ];
-  
-// @description Get all posts
-// @routes      GET api/posts 
-export const getPosts = (req, res, next) => {
-    const limit = parseInt(req.query.limit);
-  
-    if (!isNaN(limit) && limit > 0) {
-      return res.status(200).json(posts.slice(0, limit));
-    }
-  
-    res.status(200).json(posts);
-  }
+let posts = [];
 
-// @description Get all posts
-// @routes      GET api/posts/:id
-export const getPost = (req, res, next) => {
-    const id = parseInt(req.params.id);
-    const post = posts.find((post) => post.id === id);
-  
-    if (!post) {
-      const error = new Error(`A post with the ID of ${id} was NOT found!`);
-      error.status = 404;
-      return next(error);
-    }
-  
-    res.status(200).json(post);
-  }
+export const getPosts = (req, res) => {
+  res.status(200).json(posts);
+};
 
-// @description Create new Post
-// @routes      POST api/posts
-export const createPost = (req, res, next) => {
-    console.log(req.body);
-    const newPost = {
-      id: posts.length + 1,
-      title: req.body.title,
-    };
-  
-    if (!newPost.title) {
-      const error = new Error(`Please include a title!`);
-      error.status = 400;
-      return next(error);
-    }
-  
-    posts.push(newPost);
-  
-    res.status(201).json(posts);
-  }
+export const getPostById = (req, res) => {
+  const id = parseInt(req.params.id);
+  const post = posts.find((p) => p.id === id);
+  if (!post) return res.status(404).send('Post not found!');
+  res.status(200).json(post);
+};
 
-// @description Update Post
-// @routes      PUT api/posts/:id
-export const updatePost = (req, res, next) => {
-    const id = parseInt(req.params.id);
-    const post = posts.find((post) => post.id === id);
-  
-    if (!post) {
-      const error = new Error(`A post with the ID of ${id} was NOT found!`);
-      error.status = 404;
-      return next(error);
-    }
-  
-    post.title = req.body.title;
-    res.status(200).json(posts);
-  }
+export const addPost = (req, res) => {
+  const { title } = req.body;
+  if (!title) return res.status(400).send('Title is required!');
+  const newPost = { id: posts.length + 1, title };
+  posts.push(newPost);
+  res.status(201).json(newPost);
+};
 
-// @description Delete Post
-// @routes      DELETE api/posts/:id
-export const deletePost = (req, res, next) => {
-    const id = parseInt(req.params.id);
-    const post = posts.find((post) => post.id === id);
-  
-    if (!post) {
-      const error = new Error(`A post with the ID of ${id} was NOT found!`);
-      error.status = 404;
-      return next(error);
-    }
-  
-    posts = posts.filter((post) => post.id !== id);
-    res.status(200).json(posts);
-  }
+export const updatePost = (req, res) => {
+  const id = parseInt(req.params.id);
+  const post = posts.find((p) => p.id === id);
+  if (!post) return res.status(404).send('Post not found!');
+  post.title = req.body.title || post.title;
+  res.status(200).json(post);
+};
+
+export const deletePost = (req, res) => {
+  const id = parseInt(req.params.id);
+  posts = posts.filter((p) => p.id !== id);
+  res.status(200).json({ message: 'Post deleted successfully!' });
+};

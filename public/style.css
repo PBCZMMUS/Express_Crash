@@ -20,7 +20,7 @@ h1 {
 /* Navigation Menu */
 header {
   background-color: #333;
-  padding: 10px 0;
+  padding: 20px 0;
 }
 
 nav ul {
@@ -33,6 +33,7 @@ nav ul {
 
 nav ul li {
   margin: 0 15px;
+  padding: 9px 19px;
 }
 
 nav .nav-link {
@@ -97,6 +98,44 @@ li {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #ddd;
+}
+
+/* Post list container */
+#post-list > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.post-title {
+  cursor: pointer; /* Pointer cursor for better UX */
+}
+
+/* Buttons container */
+.button-group {
+  display: flex;
+  gap: 8px;
+}
+
+/* Individual button styles */
+.update-btn {
+  background-color: #4caf50; /* Green for Update */
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: #f44336; /* Red for Delete */
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /* Responsive Design */

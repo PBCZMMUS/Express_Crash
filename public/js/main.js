@@ -14,39 +14,60 @@ postForm.addEventListener("submit", async (e) => {
       body: JSON.stringify({ title }),
     });
 
-    const data = await response.json();
+    if (!response.ok) {
+      throw new Error("Failed to add post");
+    }
+
     alert("Post added!");
     fetchPosts(); // Refresh the post list
     postForm.reset();
   } catch (err) {
-    alert("Failed to add post");
+    alert(err.message);
   }
 });
 
 // Fetch all posts from the server and display them
 const fetchPosts = async () => {
-  const response = await fetch("/api/posts");
-  const posts = await response.json();
-  postList.innerHTML = posts
-    .map(
-      (post) => `
-      <li>
-        ${post.title} 
-        <button class="btn update-btn" onclick="editPost(${post.id})">Update</button>
-        <button class="btn delete-btn" onclick="deletePost(${post.id})">Delete</button>
-      </li>
-    `
-    )
-    .join("");
+  try {
+    const response = await fetch("/api/posts");
+    if (!response.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+
+    const posts = await response.json();
+    postList.innerHTML = ""; // Clear the post list
+
+    posts.forEach((post) => {
+      addPost(post.id, post.title);
+    });
+  } catch (err) {
+    alert(err.message);
+  }
 };
+
+// Dynamically add a post to the list
+function addPost(id, title) {
+  const li = document.createElement("li");
+  li.innerHTML = `
+    <span class="post-title">${title}</span>
+    <div class="button-group" style="display: none;">
+      <button class="btn update-btn" onclick="editPost(${id})">Update</button>
+      <button class="btn delete-btn" onclick="deletePost(${id})">Delete</button>
+    </div>
+  `;
+  postList.appendChild(li);
+}
 
 // Delete a post
 const deletePost = async (id) => {
   try {
-    await fetch(`/api/posts/${id}`, { method: "DELETE" });
+    const response = await fetch(`/api/posts/${id}`, { method: "DELETE" });
+    if (!response.ok) {
+      throw new Error("Failed to delete post");
+    }
     fetchPosts(); // Refresh the post list
   } catch (err) {
-    alert("Failed to delete post");
+    alert(err.message);
   }
 };
 
@@ -54,24 +75,49 @@ const deletePost = async (id) => {
 const editPost = async (id) => {
   const title = prompt("Enter new title:");
   if (!title) return;
+
   try {
-    await fetch(`/api/posts/${id}`, {
+    const response = await fetch(`/api/posts/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title }),
     });
+
+    if (!response.ok) {
+      throw new Error("Failed to update post");
+    }
+
     fetchPosts(); // Refresh the post list
   } catch (err) {
-    alert("Failed to update post");
+    alert(err.message);
   }
 };
 
-// Handle Sort button
+// Show buttons only when a post title is clicked
+postList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("post-title")) {
+    document.querySelectorAll(".button-group").forEach((group) => {
+      group.style.display = "none"; // Hide all other button groups
+    });
+
+    const buttonGroup = e.target.nextElementSibling;
+    if (buttonGroup) {
+      buttonGroup.style.display = "flex"; // Show buttons for the clicked title
+    }
+  }
+});
+
+// Sort posts alphabetically
 sortButton.addEventListener("click", () => {
   const posts = Array.from(postList.children);
-  posts.sort((a, b) => a.textContent.localeCompare(b.textContent));
+  posts.sort((a, b) =>
+    a.querySelector(".post-title").textContent.localeCompare(
+      b.querySelector(".post-title").textContent
+    )
+  );
+
   postList.innerHTML = ""; // Clear the current list
-  posts.forEach((post) => postList.appendChild(post)); // Re-add sorted posts
+  posts.forEach((post) => postList.appendChild(post)); // Append sorted posts
 });
 
 // Initial fetch of posts when the page loads

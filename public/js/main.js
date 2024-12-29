@@ -107,6 +107,15 @@ postList.addEventListener("click", (e) => {
   }
 });
 
+// Hide buttons when clicking outside a title
+document.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("post-title")) {
+    document.querySelectorAll(".button-group").forEach((group) => {
+      group.style.display = "none"; // Hide all button groups
+    });
+  }
+});
+
 // Sort posts alphabetically
 sortButton.addEventListener("click", () => {
   const posts = Array.from(postList.children);

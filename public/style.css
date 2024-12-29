@@ -35,10 +35,6 @@ nav ul li {
   margin: 0 15px;
 }
 
-nav ul li a {
-  padding: 3px 7px;
-}
-
 nav .nav-link {
   color: #008cba;
   text-decoration: none;
@@ -77,7 +73,7 @@ nav .nav-link:hover {
 }
 
 button.btn.update-btn {
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 /* Input Styles */
@@ -97,8 +93,8 @@ ul {
 
 li {
   background-color: #fff;
-  margin: 5px 0;
-  padding: 15px;
+  margin: 3px 0;
+  padding: 5px;
   border-radius: 5px;
   border: 1px solid #ddd;
 }
@@ -128,7 +124,7 @@ li {
 }
 
 .update-btn {
-  background-color: #4CAF50; /* Green for update */
+  background-color: #4caf50; /* Green for update */
   color: white;
 }
 
